@@ -1,24 +1,19 @@
-# README
+# Jira-like
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Stack
+### Backend
+- Ruby 3.3.4
+- Ruby on Rails 8
+- PostgreSQL 18
 
-Things you may want to cover:
+### Gems
+- RSpec
+- FactoryBot
+- Faker
+- Pundit
+- RuboCop
+- Brakeman
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Infrastructure
+- Docker
+- Docker Compose
