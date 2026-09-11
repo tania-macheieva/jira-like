@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: one
+  name: MyString
+  description: MyText
+  issue_type: 1
+  issue_status: 1
+
+two:
+  project_id: two
+  name: MyString
+  description: MyText
+  issue_type: 1
+  issue_status: 1

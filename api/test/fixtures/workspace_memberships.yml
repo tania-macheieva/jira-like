@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: one
+  workspace_id: one
+  role: 1
+
+two:
+  user_id: two
+  workspace_id: two
+  role: 1
