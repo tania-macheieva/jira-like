@@ -2,7 +2,7 @@
 
 Jira-like — Multi-Tenant Issue Tracker
 
-`JiraLike` is a repository for a multi-tenant issue tracking platform. The active application in this repository is a Rails API that handles authentication, workspaces, projects, issues, and comments.
+`JiraLike` is a repository for a multi-tenant issue tracking platform. The active application in this repository is a Rails API that handles authentication, workspaces, epics, issues, and comments.
 
 ## Repository structure
 
@@ -25,5 +25,4 @@ Start with these files:
 - [`docs/SETUP.md`](docs/SETUP.md) — local development setup.
 - [`docs/ENV_USAGE.md`](docs/ENV_USAGE.md) — required environment variables.
 - [`docs/DB.md`](docs/DB.md) — database structure reference.
-- [`docs/Jira_Like_API_v1.0.md`](docs/Jira_Lite_API_v1.0.md) — repository-aligned API overview.
 - [`api/README.md`](api/README.md) — API-specific commands and endpoint summary.
