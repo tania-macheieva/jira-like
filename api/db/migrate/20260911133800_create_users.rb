@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUsers < ActiveRecord::Migration[8.1]
   def change
     create_table :users do |t|
@@ -8,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-      add_index :users, :name, unique: false
-      add_index :users, :email, unique: true
+    add_index :users, :name, unique: false
+    add_index :users, :email, unique: true
   end
 end

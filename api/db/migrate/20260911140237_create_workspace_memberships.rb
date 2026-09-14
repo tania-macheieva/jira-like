@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateWorkspaceMemberships < ActiveRecord::Migration[8.1]
   def change
     create_table :workspace_memberships do |t|
@@ -9,7 +11,7 @@ class CreateWorkspaceMemberships < ActiveRecord::Migration[8.1]
     end
 
     add_index :workspace_memberships,
-              [:user_id, :workspace_id],
+              %i[user_id workspace_id],
               unique: true
   end
 end
