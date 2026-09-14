@@ -23,4 +23,8 @@ class Issue < ApplicationRecord
          story: 2,
          feature: 3
        }
+
+  validates :title, presence: true
+  validates :status, presence: true
+  validates :type, presence: true
 end

@@ -6,4 +6,7 @@ class Workspace < ApplicationRecord
 
   has_many :epics, dependent: :destroy
   has_many :issues, dependent: :destroy
+
+  validates :name, presence: true
+  validates :key, presence: true, uniqueness: true
 end

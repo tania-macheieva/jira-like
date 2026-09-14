@@ -10,4 +10,7 @@ class WorkspaceMembership < ApplicationRecord
          admin: 1,
          member: 2
        }
+
+  validates :role, presence: true
+  validates :user_id, uniqueness: { scope: :workspace_id, message: 'is already a member of this workspace' }
 end
