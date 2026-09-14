@@ -1,4 +1,9 @@
 # frozen_string_literal: true
 
 class Workspace < ApplicationRecord
+  has_many :workspace_memberships, dependent: :destroy
+  has_many :users, through: :workspace_memberships
+
+  has_many :epics, dependent: :destroy
+  has_many :issues, dependent: :destroy
 end
