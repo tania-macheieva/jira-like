@@ -2,7 +2,7 @@
 
 ## Stack
 ### Backend
-- Ruby 3.3.4
+- Ruby 3.4.8
 - Ruby on Rails 8
 - PostgreSQL 18
 
