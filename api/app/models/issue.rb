@@ -27,4 +27,15 @@ class Issue < ApplicationRecord
   validates :title, presence: true
   validates :status, presence: true
   validates :type, presence: true
+
+  validate :epic_belongs_to_workspace
+
+  private
+
+  def epic_belongs_to_workspace
+    return if epic.nil?
+    return if epic.workspace_id == workspace_id
+
+    errors.add(:epic, 'must belong to the same workspace as the issue')
+  end
 end
