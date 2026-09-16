@@ -2,6 +2,8 @@
 
 ![CLASS Diagram](images/class-diagram.png)
 
+The API currently implements a workspace-based issue-tracking model with secure password authentication. User credentials are stored using `password_digest` and Rails `has_secure_password` with `bcrypt`.
+
 **Guest**
 
 * As a guest, I can register a new account: `POST /api/v1/auth/register`
@@ -46,5 +48,5 @@
 * As a workspace owner, I can update workspace details: `PATCH /api/v1/workspaces/:id`
 * As a workspace owner, I can delete the workspace: `DELETE /api/v1/workspaces/:id`
 * As a workspace owner, I can promote a member to admin or demote an admin to member: `PATCH /api/v1/workspaces/:workspace_id/memberships/:id`
-* As a workspace owner, I can transfer ownership to another member, while the workspace always keeps exactly one owner: `PATCH /api/v1/workspaces/:workspace_id/memberships/:id`
+* As a workspace owner, I can transfer ownership to another member while the workspace keeps exactly one owner: `PATCH /api/v1/workspaces/:workspace_id/memberships/:id`
 * As a workspace owner, I can remove any admin or member from the workspace: `DELETE /api/v1/workspaces/:workspace_id/memberships/:id`

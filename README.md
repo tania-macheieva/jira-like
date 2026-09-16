@@ -1,28 +1,37 @@
 # jira-like
 
-Jira-like — Multi-Tenant Issue Tracker
+Jira-like � Multi-tenant issue tracker
 
-`JiraLike` is a repository for a multi-tenant issue tracking platform. The active application in this repository is a Rails API that handles authentication, workspaces, epics, issues, and comments.
+This repository contains the backend API for a Jira-inspired workspace-based issue tracker. The application is built with Ruby on Rails and follows a workspace/member model with secure user authentication, epics, issues, comments, and role-based permissions.
 
 ## Repository structure
 
-The repository is organized into three top-level areas:
+- [`api/`](api/README.md) � Rails API app with models, database schema, tests, and configuration.
+- [`docs/`](docs/README.md) � project documentation covering setup, environment variables, schema, and user stories.
+- [`web/`](web/README.md) � frontend placeholder for future UI work.
 
-- [`api/`](api/README.md) — the Rails API application, including models, controllers, policies, tests, and generated Swagger documentation.
-- [`docs/`](docs/README.md) — project documentation such as setup instructions, environment variable guidance, database notes, API summaries, and user stories.
-- [`web/`](web/README.md) — a placeholder for the future frontend application. At the moment this directory contains documentation only.
+## Current implementation status
 
-## Current status
+- Rails API backend is the main implemented component.
+- Users are backed by `password_digest` and `has_secure_password` using `bcrypt`.
+- Workspaces, memberships, epics, issues, and comments are modeled in the API.
+- Model specs cover validations and associations for the core domain objects.
+- The frontend application is still a placeholder and not yet implemented.
 
-- The backend API is the main implemented component in this repository.
-- OpenAPI/Swagger output is generated from request specs and stored in `api/swagger/v1/swagger.yaml`.
-- The frontend application has not been added yet.
+## Quick start
+
+1. Install Ruby dependencies in `api/`.
+2. Configure PostgreSQL connection variables.
+3. Create and migrate the database.
+4. Run the Rails server or the standard project checks with `bin/check`.
+
+See the docs for exact commands and environment setup.
 
 ## Documentation map
 
-Start with these files:
-
-- [`docs/SETUP.md`](docs/SETUP.md) — local development setup.
-- [`docs/ENV_USAGE.md`](docs/ENV_USAGE.md) — required environment variables.
-- [`docs/DB.md`](docs/DB.md) — database structure reference.
-- [`api/README.md`](api/README.md) — API-specific commands and endpoint summary.
+- [`docs/SETUP.md`](docs/SETUP.md) � local development setup
+- [`docs/ENV_USAGE.md`](docs/ENV_USAGE.md) � required PostgreSQL and Rails environment variables
+- [`docs/DB.md`](docs/DB.md) � schema reference and relationship overview
+- [`docs/user_story.md`](docs/user_story.md) � role-based stories and API scope
+- [`api/README.md`](api/README.md) � API-level commands and notes
+- [`web/README.md`](web/README.md) � frontend placeholder
