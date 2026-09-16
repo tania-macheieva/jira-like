@@ -32,7 +32,7 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
-  # Skip http-to-https redirect for the default health check endpoint.
+  # Skip http-to-https redirect for the default health check.rb endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Log to STDOUT with the current request id as a default log tag.
@@ -87,6 +87,6 @@ Rails.application.configure do
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
   # ]
   #
-  # Skip DNS rebinding protection for the default health check endpoint.
+  # Skip DNS rebinding protection for the default health check.rb endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end

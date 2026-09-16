@@ -16,7 +16,7 @@
 # KAMAL_ROLES (if set)
 # KAMAL_DESTINATION (if set)
 
-# Only check the build status for production deployments
+# Only check.rb the build status for production deployments
 if ENV["KAMAL_COMMAND"] == "rollback" || ENV["KAMAL_DESTINATION"] != "production"
   exit 0
 end

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Running tests..."
+bin/rails db:test:prepare
+bundle exec rspec
+
+echo "Running RuboCop..."
+bin/rubocop -A
+
+echo "Running Brakeman..."
+bin/brakeman --no-pager
+
+echo "Running Bundler Audit..."
+bin/bundler-audit
+
+echo "Running Importmap Audit..."
+bin/importmap audit
+
+echo "All checks passed!"

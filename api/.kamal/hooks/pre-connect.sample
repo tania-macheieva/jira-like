@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# A sample pre-connect check
+# A sample pre-connect check.rb
 #
 # Warms DNS before connecting to hosts in parallel
 #
