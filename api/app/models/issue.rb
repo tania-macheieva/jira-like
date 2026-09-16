@@ -9,14 +9,14 @@ class Issue < ApplicationRecord
 
   enum :status,
        {
-         todo: 0,
+         to_do: 0,
          in_progress: 1,
          review: 2,
          qa: 3,
          done: 4
        }
 
-  enum :type,
+  enum :issue_type,
        {
          task: 0,
          bug: 1,
@@ -26,7 +26,7 @@ class Issue < ApplicationRecord
 
   validates :title, presence: true
   validates :status, presence: true
-  validates :type, presence: true
+  validates :issue_type, presence: true
 
   validate :epic_belongs_to_workspace
 

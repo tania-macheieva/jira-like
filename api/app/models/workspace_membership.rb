@@ -4,7 +4,7 @@ class WorkspaceMembership < ApplicationRecord
   belongs_to :user
   belongs_to :workspace
 
-  enum role,
+  enum :role,
        {
          owner: 0,
          admin: 1,
