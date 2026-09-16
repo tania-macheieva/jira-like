@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_secure_password
+
   has_many :workspace_memberships, dependent: :destroy
   has_many :workspaces, through: :workspace_memberships
 
@@ -11,5 +13,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
+  validates :password, length: { minimum: 8 }, allow_nil: true
   validates :password_digest, presence: true
 end
