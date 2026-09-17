@@ -32,4 +32,33 @@ RSpec.describe User, type: :model do
 
     it { is_expected.to have_many(:comments).dependent(:destroy) }
   end
+
+  describe 'password authentication' do
+    it 'authenticates with the correct password' do
+      user = FactoryBot.create(:user, password: 'Password123!')
+      expect(user.authenticate('Password123!')).to eq(user)
+    end
+
+    it 'does not authenticate with an incorrect password' do
+      user = FactoryBot.create(:user, password: 'Password123!')
+      expect(user.authenticate('WrongPassword')).to be_falsey
+    end
+
+    it 'does not authenticate with an empty password' do
+      user = FactoryBot.create(:user, password: 'Password123!')
+      expect(user.authenticate('')).to be_falsey
+    end
+
+    it 'does not store the password in plain text' do
+      user = FactoryBot.create(:user, password: 'Password123!')
+
+      expect(user.password_digest).not_to eq('Password123!')
+    end
+
+    it 'validates password confirmation' do
+      user = FactoryBot.build(:user, password: 'correct_password', password_confirmation: 'wrong_password')
+
+      expect(user).not_to be_valid
+    end
+  end
 end

@@ -74,6 +74,7 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'json', '~> 2.7'
 gem 'postgresql', '~> 1.0'
 
 gem 'faker', '~> 3.8'
