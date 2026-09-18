@@ -1,14 +1,14 @@
 # jira-like
 
-Jira-like � Multi-tenant issue tracker
+Jira-like - Multi-tenant issue tracker
 
 This repository contains the backend API for a Jira-inspired workspace-based issue tracker. The application is built with Ruby on Rails and follows a workspace/member model with secure user authentication, epics, issues, comments, and role-based permissions.
 
 ## Repository structure
 
-- [`api/`](api/README.md) � Rails API app with models, database schema, tests, and configuration.
-- [`docs/`](docs/README.md) � project documentation covering setup, environment variables, schema, and user stories.
-- [`web/`](web/README.md) � frontend placeholder for future UI work.
+- [`api/`](api/README.md) Rails API app with models, database schema, tests, and configuration.
+- [`docs/`](docs/README.md) project documentation covering setup, environment variables, schema, and user stories.
+- [`web/`](web/README.md) frontend placeholder for future UI work.
 
 ## Current implementation status
 
