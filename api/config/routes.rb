@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :workspaces, only: %i[index show create update destroy]
+
       namespace :auth do
         post 'register', to: 'registration#create'
         post 'login', to: 'login#create'
