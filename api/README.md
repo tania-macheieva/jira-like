@@ -70,3 +70,26 @@ Workspace access is enforced by Pundit. Members can view workspaces, admins can 
 ## Domain model
 
 The API includes users, workspaces, workspace memberships, epics, issues, and comments. For the schema and relationships, see `docs/DB.md` and `docs/user_story.md`.
+
+## Seed data
+
+Load the Faker-generated development dataset with:
+
+```bash
+bin/rails db:seed
+```
+
+The seeds create 8 users, 3 workspaces, workspace memberships for all three
+roles, 6 epics, 24 issues, and 48 comments. Every seed user uses:
+
+```text
+Password123!
+```
+
+Seed users use the `seed-user-1@example.com` through
+`seed-user-8@example.com` email addresses. Demo workspaces use the `DEMO1`,
+`DEMO2`, and `DEMO3` keys.
+
+The seed script removes and recreates only those `seed-user-*` users and
+`DEMO*` workspaces, so it can be rerun without accumulating duplicate demo
+data. Unrelated application records are preserved.

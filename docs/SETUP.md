@@ -30,6 +30,22 @@ For a fresh local environment, you can also run:
 bin/rails db:setup
 ```
 
+## Load development seed data
+
+After the database is prepared, load the Faker-generated demo data:
+
+```bash
+bin/rails db:seed
+```
+
+This creates users, workspaces, owner/admin/member memberships, epics, issues,
+and comments. All generated users use the password `Password123!`; their
+emails are `seed-user-1@example.com` through `seed-user-8@example.com`.
+
+The seed script recreates only its own demo records, identified by the
+`seed-user-*` emails and `DEMO1`–`DEMO3` workspace keys. It can be run again
+without creating duplicates and does not remove unrelated application data.
+
 ## Run the app
 
 ```bash
