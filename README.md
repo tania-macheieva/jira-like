@@ -13,9 +13,10 @@ This repository contains the backend API for a Jira-inspired workspace-based iss
 ## Current implementation status
 
 - Rails API backend is the main implemented component.
-- Users are backed by `password_digest` and `has_secure_password` using `bcrypt`.
-- Workspaces, memberships, epics, issues, and comments are modeled in the API.
-- Model specs cover validations and associations for the core domain objects.
+- Session-based authentication is implemented for registration, login, current-user lookup, and logout.
+- Workspace CRUD is implemented with Pundit authorization for owner, admin, and member roles.
+- Workspaces, memberships, epics, issues, and comments are modeled in the API; epics, issues, comments, and membership management endpoints are planned.
+- Model and request specs cover the implemented authentication and workspace behavior.
 - The frontend application is still a placeholder and not yet implemented.
 
 ## Quick start
@@ -29,9 +30,9 @@ See the docs for exact commands and environment setup.
 
 ## Documentation map
 
-- [`docs/SETUP.md`](docs/SETUP.md) � local development setup
-- [`docs/ENV_USAGE.md`](docs/ENV_USAGE.md) � required PostgreSQL and Rails environment variables
-- [`docs/DB.md`](docs/DB.md) � schema reference and relationship overview
-- [`docs/user_story.md`](docs/user_story.md) � role-based stories and API scope
-- [`api/README.md`](api/README.md) � API-level commands and notes
-- [`web/README.md`](web/README.md) � frontend placeholder
+- [`docs/SETUP.md`](docs/SETUP.md) — local development setup
+- [`docs/ENV_USAGE.md`](docs/ENV_USAGE.md) — required PostgreSQL and Rails environment variables
+- [`docs/DB.md`](docs/DB.md) — schema reference and relationship overview
+- [`docs/user_story.md`](docs/user_story.md) — role-based stories and API scope
+- [`api/README.md`](api/README.md) — API-level commands and notes
+- [`web/README.md`](web/README.md) — frontend placeholder
