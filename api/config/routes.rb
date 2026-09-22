@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :auth do
         post 'register', to: 'registration#create'
+        post 'login', to: 'login#create'
+        get 'me', to: 'me#show'
+        delete 'logout', to: 'logout#destroy'
       end
     end
   end
