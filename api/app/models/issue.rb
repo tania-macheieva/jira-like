@@ -7,6 +7,8 @@ class Issue < ApplicationRecord
   belongs_to :assignee, class_name: 'User', optional: true
   belongs_to :creator, class_name: 'User'
 
+  has_many :comments, dependent: :destroy
+
   enum :status,
        {
          to_do: 0,
