@@ -103,6 +103,20 @@ The list endpoint supports optional filters:
 Filters can be combined, for example:
 `GET /api/v1/workspaces/:workspace_id/issues?status=in_progress&issue_type=bug`.
 
+## Sprint API
+
+Sprints belong to a workspace and use the lifecycle `planned`, `active`, or
+`completed`:
+
+- `GET /api/v1/workspaces/:workspace_id/sprints`
+- `POST /api/v1/workspaces/:workspace_id/sprints`
+- `GET /api/v1/sprints/:id`
+- `PATCH /api/v1/sprints/:id`
+- `DELETE /api/v1/sprints/:id`
+
+Issues can be assigned to a Sprint with `sprint_id`; the Sprint must belong to
+the same workspace as the Issue.
+
 Issue creation assigns the authenticated user as `creator_id`. An optional
 `epic_id` must reference an Epic in the same workspace.
 
@@ -119,7 +133,7 @@ bin/rails db:seed
 ```
 
 The seeds create 8 users, 3 workspaces, workspace memberships for all three
-roles, 6 epics, 24 issues, and 48 comments. Every seed user uses:
+roles, 6 epics, 3 sprints, 24 issues, and 48 comments. Every seed user uses:
 
 ```text
 Password123!

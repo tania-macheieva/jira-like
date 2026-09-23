@@ -8,9 +8,9 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
-# It's strongly recommended that you check.rb this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_11_140641) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_23_120500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,6 +40,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_140641) do
     t.text "description"
     t.bigint "epic_id"
     t.integer "issue_type", default: 0, null: false
+    t.bigint "sprint_id"
     t.integer "status", default: 0, null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
@@ -47,7 +48,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_140641) do
     t.index ["assignee_id"], name: "index_issues_on_assignee_id"
     t.index ["creator_id"], name: "index_issues_on_creator_id"
     t.index ["epic_id"], name: "index_issues_on_epic_id"
+    t.index ["sprint_id"], name: "index_issues_on_sprint_id"
     t.index ["workspace_id"], name: "index_issues_on_workspace_id"
+  end
+
+  create_table "sprints", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "workspace_id", null: false
+    t.index ["workspace_id"], name: "index_sprints_on_workspace_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,9 +94,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_11_140641) do
   add_foreign_key "comments", "users"
   add_foreign_key "epics", "workspaces"
   add_foreign_key "issues", "epics"
+  add_foreign_key "issues", "sprints"
   add_foreign_key "issues", "users", column: "assignee_id"
   add_foreign_key "issues", "users", column: "creator_id"
   add_foreign_key "issues", "workspaces"
+  add_foreign_key "sprints", "workspaces"
   add_foreign_key "workspace_memberships", "users"
   add_foreign_key "workspace_memberships", "workspaces"
 end

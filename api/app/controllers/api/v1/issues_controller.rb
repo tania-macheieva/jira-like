@@ -62,7 +62,7 @@ module Api
       end
 
       def issue_params
-        params.require(:issue).permit(:title, :description, :status, :issue_type, :epic_id, :assignee_id)
+        params.require(:issue).permit(:title, :description, :status, :issue_type, :epic_id, :assignee_id, :sprint_id)
       end
 
       def apply_filters(issues)
@@ -75,6 +75,7 @@ module Api
           id: issue.id,
           workspace_id: issue.workspace_id,
           epic_id: issue.epic_id,
+          sprint_id: issue.sprint_id,
           creator_id: issue.creator_id,
           assignee_id: issue.assignee_id,
           title: issue.title,

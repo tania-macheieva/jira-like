@@ -3,6 +3,7 @@
 class Issue < ApplicationRecord
   belongs_to :workspace
   belongs_to :epic, optional: true
+  belongs_to :sprint, optional: true
 
   belongs_to :assignee, class_name: 'User', optional: true
   belongs_to :creator, class_name: 'User'
@@ -31,6 +32,7 @@ class Issue < ApplicationRecord
   validates :issue_type, presence: true
 
   validate :epic_belongs_to_workspace
+  validate :sprint_belongs_to_workspace
 
   private
 
@@ -39,5 +41,12 @@ class Issue < ApplicationRecord
     return if epic.workspace_id == workspace_id
 
     errors.add(:epic, 'must belong to the same workspace as the issue')
+  end
+
+  def sprint_belongs_to_workspace
+    return if sprint.nil?
+    return if sprint.workspace_id == workspace_id
+
+    errors.add(:sprint, 'must belong to the same workspace as the issue')
   end
 end

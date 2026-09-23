@@ -46,6 +46,8 @@ workspaces.each_with_index do |workspace, workspace_index|
     end
   end
 
+  sprint = Sprint.create!(workspace: workspace, name: 'Sprint 1', status: :active)
+
   8.times do
     creator = workspace.users.sample(random: Faker::Config.random)
     assignee = workspace.users.sample(random: Faker::Config.random)
@@ -57,6 +59,7 @@ workspaces.each_with_index do |workspace, workspace_index|
 
     issue = Issue.find_or_create_by!(workspace: workspace, title: title) do |new_issue|
       new_issue.epic = epic
+      new_issue.sprint = sprint
       new_issue.creator = creator
       new_issue.assignee = assignee
       new_issue.description = description
