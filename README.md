@@ -15,8 +15,8 @@ This repository contains the backend API for a Jira-inspired workspace-based iss
 - Rails API backend is the main implemented component.
 - Session-based authentication is implemented for registration, login, current-user lookup, and logout.
 - Workspace CRUD is implemented with Pundit authorization for owner, admin, and member roles.
-- Workspaces, memberships, epics, issues, and comments are modeled in the API; epics, issues, comments, and membership management endpoints are planned.
-- Model and request specs cover the implemented authentication and workspace behavior.
+- Workspaces, memberships, epics, issues, and comments are modeled in the API; issue filtering, comments, and membership management endpoints are planned.
+- Model and request specs cover the implemented authentication, workspace, Epic, and Issue behavior.
 - The frontend application is still a placeholder and not yet implemented.
 
 ## Quick start

@@ -81,9 +81,34 @@ operations:
 
 Non-members receive `403 Forbidden`, including when accessing an Epic by ID.
 
+## Issue API
+
+Issue endpoints require an authenticated session and membership in the
+corresponding workspace. Members, admins, and owners can use Issue CRUD
+operations:
+
+- `GET /api/v1/workspaces/:workspace_id/issues` — list workspace issues
+- `POST /api/v1/workspaces/:workspace_id/issues` — create an issue
+- `GET /api/v1/issues/:id` — view an issue
+- `PATCH /api/v1/issues/:id` — update an issue
+- `DELETE /api/v1/issues/:id` — delete an issue
+
+The list endpoint supports optional filters:
+
+- `status` — `to_do`, `in_progress`, `review`, `qa`, or `done`
+- `issue_type` — `task`, `bug`, `story`, or `feature`
+- `assignee_id` — filter by assigned user
+- `epic_id` — filter by Epic in the workspace
+
+Filters can be combined, for example:
+`GET /api/v1/workspaces/:workspace_id/issues?status=in_progress&issue_type=bug`.
+
+Issue creation assigns the authenticated user as `creator_id`. An optional
+`epic_id` must reference an Epic in the same workspace.
+
 ## Domain model
 
-The API includes users, workspaces, workspace memberships, epics, issues, and comments. Authentication, workspace CRUD, and Epic CRUD are implemented; issue, comment, and membership management endpoints remain planned. For the schema and relationships, see `docs/DB.md` and `docs/user_story.md`.
+The API includes users, workspaces, workspace memberships, epics, issues, and comments. Authentication, workspace CRUD, Epic CRUD, Issue CRUD, and Issue filtering are implemented; comment and membership management endpoints remain planned. For the schema and relationships, see `docs/DB.md` and `docs/user_story.md`.
 
 ## Seed data
 

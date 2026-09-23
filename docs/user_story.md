@@ -2,7 +2,7 @@
 
 ![CLASS Diagram](images/class-diagram.png)
 
-The API currently implements session-based authentication, workspace CRUD, and Epic CRUD with role-based authorization. User credentials are stored using `password_digest` and Rails `has_secure_password` with `bcrypt`. Workspace and Epic authorization are enforced with Pundit.
+The API currently implements session-based authentication, workspace CRUD, Epic CRUD, and Issue CRUD with role-based authorization. User credentials are stored using `password_digest` and Rails `has_secure_password` with `bcrypt`. Workspace, Epic, and Issue authorization are enforced with Pundit.
 
 **Guest**
 
@@ -27,6 +27,12 @@ The API currently implements session-based authentication, workspace CRUD, and E
 * As a workspace member, I can view an epic: `GET /api/v1/epics/:id`
 * As a workspace member, I can update an epic: `PATCH /api/v1/epics/:id`
 * As a workspace member, I can delete an epic: `DELETE /api/v1/epics/:id`
+* As a workspace member, I can list issues in the workspace: `GET /api/v1/workspaces/:workspace_id/issues`
+* As a workspace member, I can filter issues by status, issue type, assignee, or Epic: `GET /api/v1/workspaces/:workspace_id/issues?status=in_progress&issue_type=bug&assignee_id=123&epic_id=5`
+* As a workspace member, I can create an issue: `POST /api/v1/workspaces/:workspace_id/issues`
+* As a workspace member, I can view an issue: `GET /api/v1/issues/:id`
+* As a workspace member, I can update an issue: `PATCH /api/v1/issues/:id`
+* As a workspace member, I can delete an issue: `DELETE /api/v1/issues/:id`
 
 **Workspace Admin (Role: admin)**
 
@@ -40,4 +46,4 @@ The API currently implements session-based authentication, workspace CRUD, and E
 
 ## Planned workspace features
 
-Membership management, issues, and comments are modeled in the database but their API endpoints are not implemented yet.
+Membership management and comments are modeled in the database but their API endpoints are not implemented yet.

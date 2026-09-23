@@ -52,6 +52,31 @@ RSpec.describe 'Issues', type: :request do
       expect(JSON.parse(response.body)['issues'].map { |item| item['id'] }).to include(issue.id)
     end
 
+    it 'filters issues by status, issue type, assignee, and epic' do
+      assignee = FactoryBot.create(:user)
+      matching_issue = FactoryBot.create(
+        :issue,
+        workspace: workspace,
+        epic: epic,
+        assignee: assignee,
+        status: :in_progress,
+        issue_type: :bug
+      )
+      FactoryBot.create(:issue, workspace: workspace, epic: epic, status: :done, issue_type: :task)
+
+      get "/api/v1/workspaces/#{workspace.id}/issues",
+          params: {
+            status: 'in_progress',
+            issue_type: 'bug',
+            assignee_id: assignee.id,
+            epic_id: epic.id
+          },
+          as: :json
+
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)['issues'].map { |item| item['id'] }).to eq([matching_issue.id])
+    end
+
     it 'shows, updates, and deletes an issue' do
       issue = FactoryBot.create(:issue, workspace: workspace, epic: epic)
 

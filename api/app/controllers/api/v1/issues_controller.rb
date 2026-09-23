@@ -10,7 +10,10 @@ module Api
       before_action :authorize_issue, only: %i[show update destroy]
 
       def index
-        render json: { issues: policy_scope(@workspace.issues) }, status: :ok
+        issues = policy_scope(@workspace.issues)
+        issues = apply_filters(issues)
+
+        render json: { issues: issues }, status: :ok
       end
 
       def show
@@ -60,6 +63,11 @@ module Api
 
       def issue_params
         params.require(:issue).permit(:title, :description, :status, :issue_type, :epic_id, :assignee_id)
+      end
+
+      def apply_filters(issues)
+        filters = params.permit(:status, :issue_type, :assignee_id, :epic_id).to_h.compact_blank
+        issues.where(filters)
       end
 
       def issue_attributes(issue)
