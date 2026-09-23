@@ -67,9 +67,23 @@ Workspace endpoints require an authenticated session:
 
 Workspace access is enforced by Pundit. Members can view workspaces, admins can view and update them, and owners can view, update, and delete them.
 
+## Epic API
+
+Epic endpoints require an authenticated session and membership in the
+corresponding workspace. Members, admins, and owners can use all Epic CRUD
+operations:
+
+- `GET /api/v1/workspaces/:workspace_id/epics` — list workspace epics
+- `POST /api/v1/workspaces/:workspace_id/epics` — create an epic
+- `GET /api/v1/epics/:id` — view an epic
+- `PATCH /api/v1/epics/:id` — update an epic
+- `DELETE /api/v1/epics/:id` — delete an epic
+
+Non-members receive `403 Forbidden`, including when accessing an Epic by ID.
+
 ## Domain model
 
-The API includes users, workspaces, workspace memberships, epics, issues, and comments. For the schema and relationships, see `docs/DB.md` and `docs/user_story.md`.
+The API includes users, workspaces, workspace memberships, epics, issues, and comments. Authentication, workspace CRUD, and Epic CRUD are implemented; issue, comment, and membership management endpoints remain planned. For the schema and relationships, see `docs/DB.md` and `docs/user_story.md`.
 
 ## Seed data
 
