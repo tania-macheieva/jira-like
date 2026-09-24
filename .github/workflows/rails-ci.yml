@@ -4,10 +4,12 @@ on:
   pull_request:
     paths:
       - 'api/**'
+      - 'workflow_engine/**'
   push:
     branches: [ main ]
     paths:
       - 'api/**'
+      - 'workflow_engine/**'
 
 jobs:
   scan_ruby:
@@ -122,3 +124,25 @@ jobs:
         run: |
           bin/rails db:test:prepare
           bundle exec rspec
+
+  test_workflow_engine:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4.8"
+
+      - name: Build gem
+        working-directory: ./workflow_engine
+        run: gem build workflow_engine.gemspec
+
+      - name: Verify gem behavior
+        working-directory: ./workflow_engine
+        run: |
+          ruby -Ilib -e "require 'workflow_engine'; abort unless WorkflowEngine.new.allowed?(:qa, :done)"
+          ruby -Ilib -e "require 'workflow_engine'; abort if WorkflowEngine.new.allowed?(:review, :done)"

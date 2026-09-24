@@ -18,4 +18,7 @@ bin/bundler-audit
 echo "Running Importmap Audit..."
 bin/importmap audit
 
+echo "Checking WorkflowEngine gem..."
+(cd ../workflow_engine && trap 'rm -f workflow_engine-*.gem' EXIT && gem build workflow_engine.gemspec --silent && ruby -Ilib -e "require 'workflow_engine'; abort unless WorkflowEngine.new.allowed?(:qa, :done); abort if WorkflowEngine.new.allowed?(:review, :done)")
+
 echo "All checks passed!"
