@@ -29,6 +29,8 @@ The API currently implements session-based authentication, workspace CRUD, Epic 
 * As a workspace member, I can delete an epic: `DELETE /api/v1/epics/:id`
 * As a workspace member, I can list issues in the workspace: `GET /api/v1/workspaces/:workspace_id/issues`
 * As a workspace member, I can filter issues by status, issue type, assignee, or Epic: `GET /api/v1/workspaces/:workspace_id/issues?status=in_progress&issue_type=bug&assignee_id=123&epic_id=5`
+* As a workspace member, I can list and manage workspace sprints: `GET|POST /api/v1/workspaces/:workspace_id/sprints`
+* As a workspace member, I can view, update, and delete a sprint: `GET|PATCH|DELETE /api/v1/sprints/:id`
 * As a workspace member, I can create an issue: `POST /api/v1/workspaces/:workspace_id/issues`
 * As a workspace member, I can view an issue: `GET /api/v1/issues/:id`
 * As a workspace member, I can update an issue: `PATCH /api/v1/issues/:id`

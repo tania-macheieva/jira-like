@@ -44,7 +44,7 @@ RSpec.describe 'Issues', type: :request do
     end
 
     it 'lists workspace issues' do
-      issue = FactoryBot.create(:issue, workspace: workspace, epic: epic)
+      issue = FactoryBot.create(:issue, workspace: workspace, epic: epic, status: :qa)
 
       get "/api/v1/workspaces/#{workspace.id}/issues", as: :json
 
@@ -78,7 +78,7 @@ RSpec.describe 'Issues', type: :request do
     end
 
     it 'shows, updates, and deletes an issue' do
-      issue = FactoryBot.create(:issue, workspace: workspace, epic: epic)
+      issue = FactoryBot.create(:issue, workspace: workspace, epic: epic, status: :qa)
 
       get "/api/v1/issues/#{issue.id}", as: :json
       expect(response).to have_http_status(:ok)
@@ -91,6 +91,30 @@ RSpec.describe 'Issues', type: :request do
 
       delete "/api/v1/issues/#{issue.id}", as: :json
       expect(response).to have_http_status(:no_content)
+    end
+
+    it 'rejects an invalid status transition' do
+      issue = FactoryBot.create(:issue, workspace: workspace, epic: epic, status: :review)
+
+      patch "/api/v1/issues/#{issue.id}",
+            params: { issue: { status: 'done' } },
+            as: :json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(JSON.parse(response.body)['errors'])
+        .to include('Transition from review to done is not allowed')
+      expect(issue.reload.status).to eq('review')
+    end
+
+    it 'moves an issue through the workflow' do
+      issue = FactoryBot.create(:issue, workspace: workspace, epic: epic, status: :qa)
+
+      patch "/api/v1/issues/#{issue.id}",
+            params: { issue: { status: 'in_progress' } },
+            as: :json
+
+      expect(response).to have_http_status(:ok)
+      expect(issue.reload.status).to eq('in_progress')
     end
   end
 

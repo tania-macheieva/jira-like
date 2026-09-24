@@ -31,11 +31,19 @@ module Api
       end
 
       def update
-        if @issue.update(issue_params)
-          render json: { issue: issue_attributes(@issue) }, status: :ok
-        else
-          render json: { errors: @issue.errors.full_messages }, status: :unprocessable_entity
+        attributes = issue_params.to_h
+        requested_status = attributes.delete('status')
+
+        Issue.transaction do
+          move_issue(requested_status) if status_change_requested?(requested_status)
+          update_issue(attributes)
         end
+
+        render json: { issue: issue_attributes(@issue) }, status: :ok
+      rescue WorkflowEngine::InvalidTransitionError => e
+        render json: { errors: [e.message] }, status: :unprocessable_entity
+      rescue ActiveRecord::RecordInvalid
+        render json: { errors: @issue.errors.full_messages }, status: :unprocessable_entity
       end
 
       def destroy
@@ -68,6 +76,18 @@ module Api
       def apply_filters(issues)
         filters = params.permit(:status, :issue_type, :assignee_id, :epic_id).to_h.compact_blank
         issues.where(filters)
+      end
+
+      def move_issue(status)
+        MoveIssueService.new(issue: @issue, to_status: status).call
+      end
+
+      def status_change_requested?(status)
+        status.present? && status != @issue.status
+      end
+
+      def update_issue(attributes)
+        @issue.update!(attributes) if attributes.present?
       end
 
       def issue_attributes(issue)
