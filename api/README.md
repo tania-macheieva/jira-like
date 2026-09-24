@@ -16,6 +16,7 @@
 - `factory_bot_rails` for fixture factories
 - `faker` for test data generation
 - `shoulda-matchers` for validation assertions
+- `workflow_engine` for framework-independent issue status transition rules
 - `rubocop` and `brakeman` for linting/security analysis
 
 ### Infrastructure
@@ -42,7 +43,8 @@ cd api
 bin/check
 ```
 
-This runs the test suite, RuboCop auto-fix, Brakeman, bundler-audit, and importmap audit.
+This runs the test suite, RuboCop auto-fix, Brakeman, bundler-audit, importmap
+audit, and a build/smoke check for the local `workflow_engine` gem.
 
 ## Auth notes
 
@@ -102,6 +104,30 @@ The list endpoint supports optional filters:
 
 Filters can be combined, for example:
 `GET /api/v1/workspaces/:workspace_id/issues?status=in_progress&issue_type=bug`.
+
+### Issue workflow
+
+Issue status changes are validated by the standalone
+[`workflow_engine`](../workflow_engine/README.md) gem. The Rails API keeps
+ActiveRecord state in `Issue`, while `MoveIssueService` delegates transition
+rules to the gem.
+
+Allowed transitions are:
+
+```text
+to_do       -> in_progress
+in_progress -> review
+review      -> qa
+qa          -> done
+qa          -> in_progress
+```
+
+Unlisted transitions return `422 Unprocessable Content` and leave the issue
+unchanged. The gem is connected locally in `Gemfile`:
+
+```ruby
+gem 'workflow_engine', path: '../workflow_engine'
+```
 
 ## Sprint API
 
