@@ -34,6 +34,16 @@ bin/rails db:schema:load
 bin/rails server
 ```
 
+## API documentation
+
+Open [Swagger UI](http://localhost:3000/api-docs/) while the Rails server is
+running. The OpenAPI document is available directly at
+[ `/openapi.yaml` ](/openapi.yaml).
+
+The API uses a Rails session cookie. Log in through the API or Swagger UI
+request examples before calling protected endpoints. Logout uses
+`DELETE /api/v1/auth/logout`.
+
 ## Running checks
 
 Use the project check script for the usual validation pass:

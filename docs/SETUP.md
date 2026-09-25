@@ -54,6 +54,18 @@ bin/rails server
 
 The API should start on the default Rails port (`http://localhost:3000`).
 
+## API documentation
+
+With the Rails server running, open the interactive Swagger UI:
+
+<http://localhost:3000/api-docs/>
+
+The source OpenAPI 3 document is available at
+<http://localhost:3000/openapi.yaml> and is also checked into
+`api/public/openapi.yaml`. The API uses a Rails session cookie, so authenticate
+with `POST /api/v1/auth/login` before trying protected endpoints. Logout uses
+`DELETE /api/v1/auth/logout`.
+
 ## Run tests
 
 ```bash

@@ -37,5 +37,7 @@ See the docs for exact commands and environment setup.
 - [`docs/DB.md`](docs/DB.md) — schema reference and relationship overview
 - [`docs/user_story.md`](docs/user_story.md) — role-based stories and API scope
 - [`api/README.md`](api/README.md) — API-level commands and notes
+- [Swagger UI](http://localhost:3000/api-docs/) — interactive API documentation when the Rails server is running
+- [OpenAPI specification](api/public/openapi.yaml) — machine-readable API contract
 - [`workflow_engine/README.md`](workflow_engine/README.md) — WorkflowEngine gem usage and transition rules
 - [`web/README.md`](web/README.md) — frontend setup and implemented UI scope
