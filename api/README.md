@@ -105,6 +105,10 @@ The list endpoint supports optional filters:
 Filters can be combined, for example:
 `GET /api/v1/workspaces/:workspace_id/issues?status=in_progress&issue_type=bug`.
 
+Filtering is implemented by the `IssueQuery` query object. The controller first
+applies the Pundit workspace policy scope, then passes the permitted filter
+parameters to `IssueQuery`, keeping authorization separate from filtering.
+
 ### Issue workflow
 
 Issue status changes are validated by the standalone

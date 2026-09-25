@@ -11,7 +11,7 @@ module Api
 
       def index
         issues = policy_scope(@workspace.issues)
-        issues = apply_filters(issues)
+        issues = IssueQuery.new(issues, issue_filter_params).call
 
         render json: { issues: issues }, status: :ok
       end
@@ -73,9 +73,8 @@ module Api
         params.require(:issue).permit(:title, :description, :status, :issue_type, :epic_id, :assignee_id, :sprint_id)
       end
 
-      def apply_filters(issues)
-        filters = params.permit(:status, :issue_type, :assignee_id, :epic_id).to_h.compact_blank
-        issues.where(filters)
+      def issue_filter_params
+        params.to_unsafe_h.slice(*IssueQuery::FILTERS)
       end
 
       def move_issue(status)
