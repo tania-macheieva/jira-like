@@ -14,25 +14,22 @@
 body {
   margin: 0;
 }
+
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
 }
+
 button {
   cursor: pointer;
 }
 
-.app {
-  max-width: 1280px;
-  margin: auto;
-  background: #fff;
-  min-height: 100vh;
-  color: #172b4d;
-}
-header {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  padding: 14px 24px;
-  border-bottom: 1px solid #dfe1e6;
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #85b8ff;
+  outline-offset: 1px;
 }

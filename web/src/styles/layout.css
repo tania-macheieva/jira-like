@@ -1,0 +1,62 @@
+.app {
+  max-width: 1280px;
+  margin: auto;
+  background: #fff;
+  min-height: 100vh;
+  color: #172b4d;
+}
+
+header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid #dfe1e6;
+}
+
+header strong {
+  font-size: 20px;
+  margin-right: auto;
+  color: #1868db;
+}
+
+header span {
+  color: #5e6c84;
+  font-size: 14px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: calc(100vh - 61px);
+}
+
+aside {
+  padding: 20px 14px;
+  border-right: 1px solid #dfe1e6;
+  background: #f7f8f9;
+}
+
+.content {
+  padding: 30px 36px;
+  min-width: 0;
+}
+
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heading-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #dfe1e6;
+  margin-bottom: 22px;
+}

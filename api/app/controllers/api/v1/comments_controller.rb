@@ -64,6 +64,11 @@ module Api
           id: comment.id,
           issue_id: comment.issue_id,
           user_id: comment.user_id,
+          user: {
+            id: comment.user.id,
+            name: comment.user.name,
+            email: comment.user.email
+          },
           body: comment.body,
           created_at: comment.created_at,
           updated_at: comment.updated_at

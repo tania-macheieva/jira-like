@@ -1,0 +1,126 @@
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    border-right: 0;
+    border-bottom: 1px solid #dfe1e6;
+  }
+
+  .board {
+    grid-template-columns: repeat(5, 180px);
+  }
+
+  .content {
+    padding: 22px 16px;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tabs {
+    gap: 18px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  header {
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  header span {
+    max-width: 42vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sprint-heading {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .sprint-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-heading {
+    display: block;
+  }
+
+  .heading-actions {
+    margin-bottom: 16px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal {
+    max-height: 100vh;
+  }
+
+  .modal-backdrop {
+    padding: 0;
+  }
+
+  .comment-form {
+    display: block;
+  }
+
+  .comment-form button {
+    margin-top: 8px;
+    padding: 9px 14px;
+  }
+
+  header strong {
+    font-size: 17px;
+  }
+
+  header button {
+    padding: 7px 10px;
+  }
+
+  .backlog-toolbar {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .backlog-filters {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .backlog-filters input {
+    max-width: none;
+  }
+
+  .sprint-heading {
+    display: block;
+  }
+
+  .sprint-title,
+  .sprint-actions {
+    justify-content: space-between;
+  }
+
+  .sprint-actions {
+    margin-top: 10px;
+  }
+
+  .sprint-issues > .issue-link,
+  .sprint-issue-list .issue-link {
+    grid-template-columns: 72px 1fr;
+  }
+
+  .sprint-issues > .issue-link small,
+  .sprint-issue-list .issue-link em {
+    grid-column: 2;
+  }
+}
