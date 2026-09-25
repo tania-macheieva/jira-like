@@ -90,7 +90,9 @@ export default function IssueDetailModal({
         comment: { body: editingBody },
       });
       setComments((current) =>
-        current.map((item) => item.id === editingCommentId ? data.comment : item),
+        current.map((item) =>
+          item.id === editingCommentId ? data.comment : item,
+        ),
       );
       setEditingCommentId(null);
       setEditingBody("");
@@ -156,7 +158,11 @@ export default function IssueDetailModal({
           </button>
         </div>
         <ErrorBanner message={error} onDismiss={() => setError("")} />
-        {success && <div className="success" role="status">{success}</div>}
+        {success && (
+          <div className="success" role="status">
+            {success}
+          </div>
+        )}
         <form onSubmit={save} className="issue-form">
           <label>
             Title
@@ -249,19 +255,47 @@ export default function IssueDetailModal({
               </div>
               {editingCommentId === item.id ? (
                 <form onSubmit={updateComment} className="comment-edit-form">
-                  <textarea value={editingBody} onChange={(event) => setEditingBody(event.target.value)} rows="3" aria-label="Edit comment" />
+                  <textarea
+                    value={editingBody}
+                    onChange={(event) => setEditingBody(event.target.value)}
+                    rows="3"
+                    aria-label="Edit comment"
+                  />
                   <div className="comment-actions">
-                    <button type="button" className="secondary-button" onClick={() => setEditingCommentId(null)}>Cancel</button>
-                    <button disabled={commentBusy || !editingBody.trim()}>Save</button>
+                    <button
+                      type="button"
+                      className="secondary-button"
+                      onClick={() => setEditingCommentId(null)}
+                    >
+                      Cancel
+                    </button>
+                    <button disabled={commentBusy || !editingBody.trim()}>
+                      Save
+                    </button>
                   </div>
                 </form>
               ) : (
                 <>
                   <p>{item.body}</p>
-                  {item.user_id === currentUser.id && <div className="comment-actions">
-                      <button type="button" className="text-button" onClick={() => startEditingComment(item)}>Edit</button>
-                      <button type="button" className="text-button danger-text" onClick={() => deleteComment(item.id)} disabled={commentBusy}>Delete</button>
-                  </div>}
+                  {item.user_id === currentUser.id && (
+                    <div className="comment-actions">
+                      <button
+                        type="button"
+                        className="text-button"
+                        onClick={() => startEditingComment(item)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        className="text-button danger-text"
+                        onClick={() => deleteComment(item.id)}
+                        disabled={commentBusy}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
                 </>
               )}
             </article>

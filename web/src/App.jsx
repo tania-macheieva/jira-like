@@ -12,16 +12,19 @@ export default function App() {
   const workspaceData = useWorkspace();
   const { loadWorkspaces, setError } = workspaceData;
 
-  const authenticate = () => request("/auth/me").then((data) => {
-    setUser(data.user);
-    loadWorkspaces();
-  });
-
-  useEffect(() => {
+  const authenticate = () =>
     request("/auth/me").then((data) => {
       setUser(data.user);
       loadWorkspaces();
-    }).catch(() => setError(""));
+    });
+
+  useEffect(() => {
+    request("/auth/me")
+      .then((data) => {
+        setUser(data.user);
+        loadWorkspaces();
+      })
+      .catch(() => setError(""));
   }, [loadWorkspaces, setError]);
 
   if (!user) return <AuthPage onLogin={authenticate} />;
@@ -39,5 +42,15 @@ export default function App() {
     }
   };
 
-  return <WorkspaceShell user={user} workspaceData={workspaceData} actions={workspaceData} onLogout={logout} loggingOut={loggingOut} view={view} onViewChange={setView} />;
+  return (
+    <WorkspaceShell
+      user={user}
+      workspaceData={workspaceData}
+      actions={workspaceData}
+      onLogout={logout}
+      loggingOut={loggingOut}
+      view={view}
+      onViewChange={setView}
+    />
+  );
 }

@@ -266,8 +266,16 @@ aside .selected {
   color: #5e6c84;
   cursor: pointer;
 }
-.sprint-status.active { color: #1f845a; border-color: #7ee2b8; background: #dcfff1; }
-.sprint-status.completed { color: #5e4db2; border-color: #c0b6f2; background: #eae6ff; }
+.sprint-status.active {
+  color: #1f845a;
+  border-color: #7ee2b8;
+  background: #dcfff1;
+}
+.sprint-status.completed {
+  color: #5e4db2;
+  border-color: #c0b6f2;
+  background: #eae6ff;
+}
 .sprint-heading small {
   color: #6b778c;
 }
@@ -287,7 +295,9 @@ aside .selected {
 .text-button:hover {
   text-decoration: underline;
 }
-.danger-text { color: #ae2e24; }
+.danger-text {
+  color: #ae2e24;
+}
 .backlog-filters {
   display: flex;
   gap: 8px;
@@ -302,7 +312,10 @@ aside .selected {
   color: #172b4d;
   background: white;
 }
-.backlog-filters input { flex: 1; max-width: 360px; }
+.backlog-filters input {
+  flex: 1;
+  max-width: 360px;
+}
 .sprint-issues > .issue-link {
   display: grid;
   grid-template-columns: 90px 1fr 100px;
@@ -403,8 +416,7 @@ aside .selected {
   padding: 2px 5px;
   background: #dbeafe;
   color: #0c66e4;
-    text-align: center;
-
+  text-align: center;
 }
 .type.bug {
   background: #ffebe6;
@@ -732,7 +744,6 @@ button:disabled {
   background: #0c66e4;
   color: #fff;
   min-height: 40px;
-
 }
 
 @media (max-width: 800px) {

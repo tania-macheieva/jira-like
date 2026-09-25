@@ -27,18 +27,49 @@ function SprintSection({ sprint, issues, onIssueClick, onUpdate, onDelete }) {
     <section className="sprint-section">
       <div className="sprint-heading">
         <span className="sprint-title">
-          <button className="expand-button" type="button" onClick={() => setExpanded(!expanded)} aria-label={`${expanded ? "Collapse" : "Expand"} ${sprint.name}`}>
+          <button
+            className="expand-button"
+            type="button"
+            onClick={() => setExpanded(!expanded)}
+            aria-label={`${expanded ? "Collapse" : "Expand"} ${sprint.name}`}
+          >
             {expanded ? "-" : "+"}
           </button>
           <strong>{sprint.name}</strong>
-          <select className={`sprint-status ${sprint.status}`} value={sprint.status} onChange={updateStatus} disabled={saving} aria-label={`${sprint.name} status`}>
-            {SPRINT_STATUSES.map((status) => <option key={status} value={status}>{status}</option>)}
+          <select
+            className={`sprint-status ${sprint.status}`}
+            value={sprint.status}
+            onChange={updateStatus}
+            disabled={saving}
+            aria-label={`${sprint.name} status`}
+          >
+            {SPRINT_STATUSES.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
           </select>
         </span>
         <span className="sprint-actions">
-          <small>{issues.length} {issues.length === 1 ? "issue" : "issues"}</small>
-          <button type="button" className="text-button" onClick={rename} disabled={saving}>Rename</button>
-          <button type="button" className="text-button danger-text" onClick={() => onDelete(sprint)} disabled={saving}>Delete</button>
+          <small>
+            {issues.length} {issues.length === 1 ? "issue" : "issues"}
+          </small>
+          <button
+            type="button"
+            className="text-button"
+            onClick={rename}
+            disabled={saving}
+          >
+            Rename
+          </button>
+          <button
+            type="button"
+            className="text-button danger-text"
+            onClick={() => onDelete(sprint)}
+            disabled={saving}
+          >
+            Delete
+          </button>
         </span>
       </div>
       {expanded && (
@@ -62,14 +93,28 @@ function SprintSection({ sprint, issues, onIssueClick, onUpdate, onDelete }) {
   );
 }
 
-export default function BacklogPage({ issues, epics, sprints, onCreateSprint, onIssueClick, onUpdateSprint, onDeleteSprint }) {
+export default function BacklogPage({
+  issues,
+  epics,
+  sprints,
+  onCreateSprint,
+  onIssueClick,
+  onUpdateSprint,
+  onDeleteSprint,
+}) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const filteredIssues = useMemo(() => {
     const query = search.trim().toLowerCase();
-    return issues.filter((issue) => !query || `${issue.title} ${issue.id}`.toLowerCase().includes(query));
+    return issues.filter(
+      (issue) =>
+        !query || `${issue.title} ${issue.id}`.toLowerCase().includes(query),
+    );
   }, [issues, search]);
-  const visibleSprints = statusFilter === "all" ? sprints : sprints.filter((sprint) => sprint.status === statusFilter);
+  const visibleSprints =
+    statusFilter === "all"
+      ? sprints
+      : sprints.filter((sprint) => sprint.status === statusFilter);
   const unassigned = filteredIssues.filter((issue) => !issue.sprint_id);
 
   return (
@@ -77,22 +122,39 @@ export default function BacklogPage({ issues, epics, sprints, onCreateSprint, on
       <div className="backlog-toolbar">
         <div>
           <strong>Backlog</strong>
-          <span>{filteredIssues.length} of {issues.length} issues</span>
+          <span>
+            {filteredIssues.length} of {issues.length} issues
+          </span>
         </div>
         <button onClick={onCreateSprint}>Create sprint</button>
       </div>
       <div className="backlog-filters">
-        <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search issues..." aria-label="Search backlog issues" />
-        <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} aria-label="Filter sprints by status">
+        <input
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Search issues..."
+          aria-label="Search backlog issues"
+        />
+        <select
+          value={statusFilter}
+          onChange={(event) => setStatusFilter(event.target.value)}
+          aria-label="Filter sprints by status"
+        >
           <option value="all">All sprint statuses</option>
-          {SPRINT_STATUSES.map((status) => <option key={status} value={status}>{status}</option>)}
+          {SPRINT_STATUSES.map((status) => (
+            <option key={status} value={status}>
+              {status}
+            </option>
+          ))}
         </select>
       </div>
       {visibleSprints.map((sprint) => (
         <SprintSection
           key={sprint.id}
           sprint={sprint}
-          issues={filteredIssues.filter((issue) => issue.sprint_id === sprint.id)}
+          issues={filteredIssues.filter(
+            (issue) => issue.sprint_id === sprint.id,
+          )}
           onIssueClick={onIssueClick}
           onUpdate={onUpdateSprint}
           onDelete={onDeleteSprint}
