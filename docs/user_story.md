@@ -29,12 +29,14 @@ The API currently implements session-based authentication, workspace CRUD, Epic 
 * As a workspace member, I can delete an epic: `DELETE /api/v1/epics/:id`
 * As a workspace member, I can list issues in the workspace: `GET /api/v1/workspaces/:workspace_id/issues`
 * As a workspace member, I can filter issues by status, issue type, assignee, or Epic: `GET /api/v1/workspaces/:workspace_id/issues?status=in_progress&issue_type=bug&assignee_id=123&epic_id=5`
-* As a workspace member, I can list and manage workspace sprints: `GET|POST /api/v1/workspaces/:workspace_id/sprints`
+* As a workspace member, I can list and create workspace sprints: `GET|POST /api/v1/workspaces/:workspace_id/sprints`
 * As a workspace member, I can view, update, and delete a sprint: `GET|PATCH|DELETE /api/v1/sprints/:id`
 * As a workspace member, I can create an issue: `POST /api/v1/workspaces/:workspace_id/issues`
 * As a workspace member, I can view an issue: `GET /api/v1/issues/:id`
 * As a workspace member, I can update an issue: `PATCH /api/v1/issues/:id`
 * As a workspace member, I can delete an issue: `DELETE /api/v1/issues/:id`
+* As a workspace member, I can list and create comments on an issue: `GET|POST /api/v1/issues/:issue_id/comments`
+* As a comment author, I can update or delete my comment: `PATCH|DELETE /api/v1/comments/:id`
 
 **Workspace Admin (Role: admin)**
 
@@ -48,4 +50,4 @@ The API currently implements session-based authentication, workspace CRUD, Epic 
 
 ## Planned workspace features
 
-Membership management and comments are modeled in the database but their API endpoints are not implemented yet.
+Membership management endpoints are modeled in the domain but are not implemented yet.

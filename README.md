@@ -9,17 +9,17 @@ This repository contains the backend API for a Jira-inspired workspace-based iss
 - [`api/`](api/README.md) Rails API app with models, database schema, tests, and configuration.
 - [`workflow_engine/`](workflow_engine/README.md) framework-independent Ruby gem that validates issue status transitions.
 - [`docs/`](docs/README.md) project documentation covering setup, environment variables, schema, and user stories.
-- [`web/`](web/README.md) frontend placeholder for future UI work.
+- [`web/`](web/README.md) React/Vite frontend for authentication and workspace planning.
 
 ## Current implementation status
 
 - Rails API backend is the main implemented component.
 - Session-based authentication is implemented for registration, login, current-user lookup, and logout.
 - Workspace CRUD is implemented with Pundit authorization for owner, admin, and member roles.
-- Workspaces, memberships, epics, issues, and comments are modeled in the API; issue filtering, comments, and membership management endpoints are planned.
+- Workspaces, memberships, epics, issues, sprints, and comments are modeled in the API. Issue filtering, sprint management, and comment endpoints are implemented; membership management endpoints remain planned.
 - Issue status transition rules are encapsulated in the standalone `workflow_engine` gem and integrated through `MoveIssueService`.
 - Model and request specs cover the implemented authentication, workspace, Epic, and Issue behavior.
-- The frontend application is still a placeholder and not yet implemented.
+- The frontend provides authentication, workspace selection and creation, project summaries, an issue board, backlog and sprint views, and epic management.
 
 ## Quick start
 
@@ -38,4 +38,4 @@ See the docs for exact commands and environment setup.
 - [`docs/user_story.md`](docs/user_story.md) — role-based stories and API scope
 - [`api/README.md`](api/README.md) — API-level commands and notes
 - [`workflow_engine/README.md`](workflow_engine/README.md) — WorkflowEngine gem usage and transition rules
-- [`web/README.md`](web/README.md) — frontend placeholder
+- [`web/README.md`](web/README.md) — frontend setup and implemented UI scope

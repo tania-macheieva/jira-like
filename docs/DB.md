@@ -30,6 +30,12 @@ Enum roles {
   member
 }
 
+Enum sprint_status {
+  planned
+  active
+  completed
+}
+
 Table users {
   id bigint [pk, increment]
   name varchar [not null]
@@ -79,6 +85,16 @@ Table issues {
   description text
   status issue_status [not null, default: 'to_do']
   issue_type issue_type [not null, default: 'task']
+  sprint_id bigint
+  created_at datetime
+  updated_at datetime
+}
+
+Table sprints {
+  id bigint [pk, increment]
+  workspace_id bigint [not null]
+  name varchar [not null]
+  status sprint_status [not null, default: 'planned']
   created_at datetime
   updated_at datetime
 }
@@ -101,6 +117,9 @@ Ref: issues.workspace_id > workspaces.id
 Ref: issues.epic_id > epics.id
 Ref: issues.creator_id > users.id
 Ref: issues.assignee_id > users.id
+Ref: issues.sprint_id > sprints.id
+
+Ref: sprints.workspace_id > workspaces.id
 
 Ref: comments.issue_id > issues.id
 Ref: comments.user_id > users.id
@@ -112,13 +131,16 @@ Ref: comments.user_id > users.id
 - `users.email` is required and unique.
 - `workspace_memberships` enforce one membership record per user per workspace.
 - `issues.status` and `issues.issue_type` are constrained by the enums defined in the Rails model.
+- `sprints.status` is constrained to `planned`, `active`, or `completed`.
 
 ## Key relationships
 
 - `users` ? `workspaces` is a many-to-many relationship through `workspace_memberships`, with `role` (`owner`, `admin`, `member`) indicating the user's authorization level in that workspace.
 - `workspaces` has many `epics`.
 - `workspaces` has many `issues`.
+- `workspaces` has many `sprints`.
 - `epics` has many `issues`, but an issue's `epic_id` is optional.
+- `sprints` have many issues, but an issue's `sprint_id` is optional.
 - `issues` has many `comments`.
 - `users` can create many `issues` via `creator_id` and may be assigned many `issues` via `assignee_id`.
 - `users` also own many `comments`.
