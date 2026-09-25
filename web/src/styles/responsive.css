@@ -1,4 +1,4 @@
-@media (max-width: 800px) {
+@media (width <= 800px) {
   .layout {
     grid-template-columns: 1fr;
   }
@@ -49,7 +49,7 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (width <= 560px) {
   .page-heading {
     display: block;
   }

@@ -14,10 +14,12 @@
 body {
   margin: 0;
 }
+
 button,
 input {
   font: inherit;
 }
+
 button {
   cursor: pointer;
 }
@@ -29,6 +31,7 @@ button {
   min-height: 100vh;
   color: #172b4d;
 }
+
 header {
   display: flex;
   gap: 20px;
