@@ -11,11 +11,17 @@ Rails.application.routes.draw do
       resources :workspaces, only: [] do
         resources :epics, only: %i[index create]
         resources :issues, only: %i[index create]
+        resources :issues, only: [] do
+          resources :comments, only: %i[index create]
+        end
         resources :sprints, only: %i[index create]
       end
       resources :epics, only: %i[show update destroy]
-      resources :issues, only: %i[show update destroy]
+      resources :issues, only: %i[show update destroy] do
+        resources :comments, only: %i[index create]
+      end
       resources :sprints, only: %i[show update destroy]
+      resources :comments, only: %i[update destroy]
 
       namespace :auth do
         post 'register', to: 'registration#create'

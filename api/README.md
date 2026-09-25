@@ -146,9 +146,26 @@ the same workspace as the Issue.
 Issue creation assigns the authenticated user as `creator_id`. An optional
 `epic_id` must reference an Epic in the same workspace.
 
+## Comment API
+
+Comments belong to an Issue and are available to workspace members:
+
+- `GET /api/v1/issues/:issue_id/comments` — list comments
+- `POST /api/v1/issues/:issue_id/comments` — create a comment
+- `PATCH /api/v1/comments/:id` — update a comment
+- `DELETE /api/v1/comments/:id` — delete a comment
+
+Members can create and view comments. A comment author can update or delete
+their own comment. Workspace admins and owners can moderate any comment in
+their workspace. Other members receive `403 Forbidden`.
+
 ## Domain model
 
-The API includes users, workspaces, workspace memberships, epics, issues, and comments. Authentication, workspace CRUD, Epic CRUD, Issue CRUD, and Issue filtering are implemented; comment and membership management endpoints remain planned. For the schema and relationships, see `docs/DB.md` and `docs/user_story.md`.
+The API includes users, workspaces, workspace memberships, epics, issues, and
+comments. Authentication, workspace CRUD, Epic CRUD, Issue CRUD, Issue
+filtering, and Comment CRUD are implemented. Membership management endpoints
+remain planned. For the schema and relationships, see `docs/DB.md` and
+`docs/user_story.md`.
 
 ## Seed data
 
