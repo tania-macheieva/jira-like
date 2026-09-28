@@ -29,3 +29,23 @@ Production builds can be created with:
 ```bash
 npm run build
 ```
+
+Run the frontend formatting, JavaScript lint, and CSS lint checks with:
+
+```bash
+npm run check
+```
+
+Frontend tests can be run with:
+
+```bash
+npm test
+```
+
+To run the tests with coverage and generate an HTML report:
+
+```bash
+npm test -- --coverage
+```
+
+Open `coverage/index.html` from the `web/` directory to view the report.

@@ -69,7 +69,27 @@ with `POST /api/v1/auth/login` before trying protected endpoints. Logout uses
 ## Run tests
 
 ```bash
+cd api
 bundle exec rspec
+```
+
+RSpec runs with SimpleCov and writes its HTML coverage report to
+`api/coverage/index.html`.
+
+Run the frontend tests with coverage from `web/`:
+
+```bash
+cd web
+npm test -- --coverage
+```
+
+The frontend HTML coverage report is generated at `web/coverage/index.html`.
+
+Run the frontend formatting and lint checks from `web/`:
+
+```bash
+cd web
+npm run check
 ```
 
 ## Run the standard check suite

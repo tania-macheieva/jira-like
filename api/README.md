@@ -56,6 +56,14 @@ bin/check
 This runs the test suite, RuboCop auto-fix, Brakeman, bundler-audit, importmap
 audit, and a build/smoke check for the local `workflow_engine` gem.
 
+Run the RSpec suite with coverage enabled using:
+
+```bash
+bundle exec rspec
+```
+
+SimpleCov generates an HTML report at `api/coverage/index.html`.
+
 ## Auth notes
 
 User credentials are stored as a `password_digest`, and the `User` model uses Rails `has_secure_password` with `bcrypt`.
