@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { jsonRequest } from "../api/client";
+import { jsonRequest } from "../lib/apiClient";
 
 function EpicRow({ epic, issues, onCreateIssue, onIssueClick }) {
   const [expanded, setExpanded] = useState(true);

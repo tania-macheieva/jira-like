@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { jsonRequest } from "../api/client";
+import { jsonRequest } from "../lib/apiClient";
 import ErrorBanner from "../components/ErrorBanner";
 
 export default function AuthPage({ onLogin }) {

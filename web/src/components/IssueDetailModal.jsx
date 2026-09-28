@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { jsonRequest, request } from "../api/client";
+import { jsonRequest, request } from "../lib/apiClient";
 import ErrorBanner from "./ErrorBanner";
 
 const STATUSES = ["to_do", "in_progress", "review", "qa", "done"];

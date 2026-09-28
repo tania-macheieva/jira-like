@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { jsonRequest, request } from "../api/client";
+import { jsonRequest, request } from "../lib/apiClient";
 
 export default function useWorkspace() {
   const [workspaces, setWorkspaces] = useState([]);

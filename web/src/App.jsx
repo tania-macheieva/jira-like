@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { request } from "./api/client";
+import { request } from "./lib/apiClient";
 import AuthPage from "./pages/AuthPage";
 import WorkspaceShell from "./components/WorkspaceShell";
 import useWorkspace from "./hooks/useWorkspace";
