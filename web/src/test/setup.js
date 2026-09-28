@@ -7,4 +7,5 @@ globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
+  vi.restoreAllMocks();
 });

@@ -1,8 +1,8 @@
 export const request = async (path, options = {}) => {
   const response = await fetch(`/api/v1${path}`, {
-    credentials: "include",
-    headers: { "Content-Type": "application/json", ...options.headers },
     ...options,
+    credentials: options.credentials ?? "include",
+    headers: { "Content-Type": "application/json", ...options.headers },
   });
 
   const body =
