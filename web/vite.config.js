@@ -1,3 +1,4 @@
+/* global process */
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 
@@ -11,7 +12,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": "http://localhost:3000",
+      "/api": process.env.VITE_API_PROXY_TARGET || "http://localhost:3000",
     },
   },
 });

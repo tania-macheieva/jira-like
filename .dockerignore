@@ -1,0 +1,8 @@
+.git
+.idea
+.env*
+**/.env*
+**/node_modules
+api/vendor/bundle
+api/config/master.key
+api/config/credentials/*.key

@@ -34,6 +34,9 @@ bin/rails db:schema:load
 bin/rails server
 ```
 
+The API can also be started as part of the root Docker Compose stack. See
+[`docs/SETUP.md`](../docs/SETUP.md#run-with-docker-compose).
+
 ## API documentation
 
 Open [Swagger UI](http://localhost:3000/api-docs/) while the Rails server is

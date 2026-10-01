@@ -54,6 +54,34 @@ bin/rails server
 
 The API should start on the default Rails port (`http://localhost:3000`).
 
+## Run with Docker Compose
+
+From the repository root, start PostgreSQL, the Rails API, and the Vite
+frontend:
+
+```bash
+docker compose up --build
+```
+
+Open the frontend at <http://localhost:5173>. The API is available at
+<http://localhost:3000>, and PostgreSQL is exposed on port `5432`. The first
+API start runs `db:prepare` automatically. Stop the stack with:
+
+```bash
+docker compose down
+```
+
+The Vite development server proxies API requests to `api:3000`. Rails allows
+this Docker service hostname in development; if you change the proxy target,
+add its hostname to `config.hosts` in `api/config/environments/development.rb`
+to avoid Rails Host Authorization responses with `Blocked hosts`.
+
+To remove the persisted PostgreSQL data as well, use:
+
+```bash
+docker compose down -v
+```
+
 ## API documentation
 
 With the Rails server running, open the interactive Swagger UI:

@@ -53,3 +53,7 @@ build-iPhoneSimulator/
 .rvmrc
 
 coverage/
+
+.env
+.env*
+!.env.example

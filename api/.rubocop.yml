@@ -37,4 +37,6 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   AllowedMethods: ["aasm"]
   Exclude:
+    - 'config/environments/*.rb'
+    - 'config/routes.rb'
     - "spec/**/*"

@@ -30,6 +30,16 @@ This repository contains the backend API for a Jira-inspired workspace-based iss
 
 See the docs for exact commands and environment setup.
 
+## Docker Compose
+
+The full local stack can be started from the repository root:
+
+```bash
+docker compose up --build
+```
+
+The frontend is available at <http://localhost:5173>.
+
 ## Documentation map
 
 - [`docs/SETUP.md`](docs/SETUP.md) — local development setup
